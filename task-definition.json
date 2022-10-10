@@ -1,0 +1,22 @@
+{
+    "containerDefinitions": [
+        {
+            "name": "busybox",
+            "image": "174170289545.dkr.ecr.eu-west-1.amazonaws.com/busybox:busybox",
+            "cpu": 0,
+            "portMappings": [],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": []
+        }
+    ],
+    "family": "busybox_task",
+    "volumes": [],
+    "placementConstraints": [],
+    "requiresCompatibilities": [
+        "EC2"
+    ],
+    "cpu": "1024",
+    "memory": "1024"
+}
