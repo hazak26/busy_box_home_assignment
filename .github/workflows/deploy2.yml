@@ -56,5 +56,5 @@ jobs:
         cluster: mycluster
         count: 1
         started-by: github-actions-${{ github.actor }}
-        wait-for-finish: true
+        wait-for-finish: false
 
