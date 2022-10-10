@@ -17,5 +17,5 @@
     "placementConstraints": [],
     "requiresCompatibilities": [
         "EC2"
-    ],
+    ]
 }
