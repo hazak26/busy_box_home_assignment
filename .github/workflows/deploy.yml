@@ -39,7 +39,7 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         
     - name: Download task definition
-      run: |
+      runjkbkjh: |
         aws ecs describe-task-definition --task-definition busybox_task --query taskDefinition > task-definition.json
         
         
