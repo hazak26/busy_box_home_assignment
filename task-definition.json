@@ -3,7 +3,8 @@
         {
             "name": "busybox",
             "image": "174170289545.dkr.ecr.eu-west-1.amazonaws.com/busybox:busybox",
-            "cpu": 0,
+            "cpu": 128,
+            "memoryReservation": 128
             "portMappings": [],
             "essential": true,
             "environment": [],
