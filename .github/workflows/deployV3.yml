@@ -38,10 +38,11 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         
-    - name: Fill in the new image ID in the Amazon ECS task definition
-      id: task-def
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
+    - name: Run Task on Amazon ECS
+      uses: smitp/amazon-ecs-run-task@v1
       with:
         task-definition: busybox_task.json
-        container-name: busybox
-        image: ${{ steps.build-image.outputs.image }}
+        cluster: mycluster
+        count: 1
+        started-by: github-actions-${{ github.actor }}
+        wait-for-finish: true
