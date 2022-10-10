@@ -1,0 +1,38 @@
+{
+    "taskDefinition": {
+        "taskDefinitionArn": "arn:aws:ecs:eu-west-1:174170289545:task-definition/busybox_task:1",
+        "containerDefinitions": [
+            {
+                "name": "busybox",
+                "image": "174170289545.dkr.ecr.eu-west-1.amazonaws.com/busybox:busybox",
+                "cpu": 0,
+                "portMappings": [],
+                "essential": true,
+                "environment": [],
+                "mountPoints": [],
+                "volumesFrom": []
+            }
+        ],
+        "family": "busybox_task",
+        "revision": 1,
+        "volumes": [],
+        "status": "ACTIVE",
+        "requiresAttributes": [
+            {
+                "name": "com.amazonaws.ecs.capability.ecr-auth"
+            }
+        ],
+        "placementConstraints": [],
+        "compatibilities": [
+            "EXTERNAL",
+            "EC2"
+        ],
+        "requiresCompatibilities": [
+            "EC2"
+        ],
+        "cpu": "1024",
+        "memory": "1024",
+        "registeredAt": "2022-10-10T13:08:27.033000+03:00",
+        "registeredBy": "arn:aws:iam::174170289545:user/julien"
+    }
+}
