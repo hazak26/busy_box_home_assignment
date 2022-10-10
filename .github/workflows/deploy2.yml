@@ -53,7 +53,7 @@ jobs:
       uses: smitp/amazon-ecs-run-task@v1
       with:
         task-definition: task-definition.json
-        cluster: busybox-cluster
+        cluster: busyboxParis
         count: 1
         started-by: github-actions-${{ github.actor }}
         wait-for-finish: false
