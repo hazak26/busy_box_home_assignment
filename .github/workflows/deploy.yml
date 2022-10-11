@@ -30,19 +30,31 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: Build, tag, and push image to Amazon ECR
+      id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: busy_box
-        IMAGE_TAG: busy_box
+        ECR_REPOSITORY: busybox
+        IMAGE_TAG: ${{ github.sha }}
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+    - name: Fill in the new image ID in the Amazon ECS task definition
+      id: task-def
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: task-definition.json
+        container-name: busybox
+        image: ${{ steps.build-image.outputs.image }}
         
-    - name: Download task definition
-      runjkbkjh: |
-        aws ecs describe-task-definition --task-definition busybox_task --query taskDefinition > task-definition.json
         
-        
-        
-        
-        
+    - name: Run Task on Amazon ECS
+      uses: smitp/amazon-ecs-run-task@v1
+      with:
+        task-definition: task-definition.json
+        cluster: busyboxIreland
+        count: 1
+        started-by: github-actions-${{ github.actor }}
+        wait-for-finish: false
+
